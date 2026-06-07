@@ -7,11 +7,12 @@
       name="description"
       content="Portfolio for Aristos Pasalides, also known as rtsketo: Android-first mobile platform engineer focused on shared Android infrastructure, production app delivery, UI systems, caching, networking, release tooling, and evidence-backed engineering."
     />
+    <meta name="color-scheme" content="light dark" />
     <title>Aristos Pasalides / rtsketo | Android Platform Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Noto+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -24,13 +25,34 @@
         <span class="brand-mark">rt</span>
         <span>Aristos Pasalides</span>
       </a>
-      <nav class="site-nav" aria-label="Primary navigation">
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
         <a href="#platform">Platform</a>
         <a href="#apps">Apps</a>
         <a href="#tooling">Tooling</a>
         <a href="#timeline">Timeline</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <div class="site-controls" aria-label="Display controls">
+        <label class="theme-control" for="theme-select">
+          <span>Theme</span>
+          <select id="theme-select" name="theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <div class="font-control" aria-label="Font size controls">
+          <button type="button" data-font-step="-1" aria-label="Decrease font size">A-</button>
+          <button type="button" data-font-reset aria-label="Reset font size">A</button>
+          <button type="button" data-font-step="1" aria-label="Increase font size">A+</button>
+        </div>
+      </div>
     </header>
 
     <main id="top">
@@ -52,10 +74,10 @@
         </div>
 
         <aside class="hero-card reveal" aria-label="Portfolio highlights">
-          <div class="portrait" aria-hidden="true">
+          <figure class="portrait">
             <div class="portrait-ring"></div>
-            <div class="portrait-core">rt</div>
-          </div>
+            <img src="./assets/profile.webp" alt="Aristos Pasalides profile photo" width="640" height="640" />
+          </figure>
           <dl class="metric-grid">
             <div>
               <dt>Professional arc</dt>
@@ -236,6 +258,18 @@
           </p>
         </div>
 
+        <div class="public-links reveal" aria-label="Selected public context links">
+          <span>Selected public context</span>
+          <a href="https://axiomc.com/" rel="noopener" target="_blank">Axiom</a>
+          <a href="https://play.google.com/store/apps/details?id=cy.com.alphamega.loyalty" rel="noopener" target="_blank">Alphamega</a>
+          <a href="https://play.google.com/store/apps/details?id=com.axiomc.cablenet" rel="noopener" target="_blank">MAXify</a>
+          <a href="https://play.google.com/store/apps/details?id=com.axiomc.bocantamivi" rel="noopener" target="_blank">Antamivi</a>
+          <a href="https://play.google.com/store/apps/details?id=com.axiomc.omonoia" rel="noopener" target="_blank">Omonoia</a>
+          <a href="https://play.google.com/store/apps/details?id=com.axiomc.beanbar" rel="noopener" target="_blank">Bean Bar</a>
+          <a href="https://play.google.com/store/apps/details?id=com.axiomc.stickandwin" rel="noopener" target="_blank">Stick And Win</a>
+          <a href="https://play.google.com/store/apps/details?id=com.axiomc.myfebe" rel="noopener" target="_blank">FEBE</a>
+        </div>
+
         <div class="systems-grid app-grid">
           <article class="system-card reveal">
             <span>LK</span>
@@ -281,7 +315,7 @@
 
           <article class="system-card reveal">
             <span>SW</span>
-            <h3>StickAndWin</h3>
+            <h3>Stick And Win</h3>
             <p>Campaign/reward mechanics across a long-running loyalty app: spin, scratch, voucher, stamp, QR, widgets, media transfer, notifications, cache refreshes, auth expiration and app deprecation/update behavior.</p>
           </article>
 
@@ -380,6 +414,18 @@
             Public GitHub projects are linked when safe. Private experiments and forks are
             labelled accurately so they do not become inflated claims.
           </p>
+        </div>
+
+        <div class="filter-panel reveal" aria-label="Technology filter">
+          <div>
+            <p class="eyebrow">Technology map</p>
+            <h3>Filter cards by stack or theme.</h3>
+          </div>
+          <div class="filter-actions">
+            <div id="tech-filters" class="tag-cloud" aria-label="Technology tags"></div>
+            <button class="filter-reset" type="button" data-filter-reset>Show all</button>
+          </div>
+          <p id="filter-status" class="filter-status" aria-live="polite"></p>
         </div>
 
         <div class="section-subheading reveal">
@@ -615,12 +661,12 @@
           <article class="timeline-item reveal">
             <span>2018-2019</span>
             <h3>Public roots</h3>
-            <p>SakuraStats PC/Android, Greek fake-news detection thesis, Android samples, Java text-processing, game experiments and public GitHub work before modern AI coding agents.</p>
+            <p>SakuraStats CLI/Android, Greek fake-news detection thesis, Android samples, Java text-processing, game experiments and public GitHub work before modern AI coding agents.</p>
           </article>
           <article class="timeline-item reveal">
             <span>2019-2020</span>
             <h3>Early production work</h3>
-            <p>StickAndWin, Benefia, OnePOS and legacy product lines: LayoutDSL, loading-button animations, QR/barcode, redemption, transaction, login/session, theming and CI foundations.</p>
+            <p>Stick And Win, Benefia, OnePOS and legacy product lines: LayoutDSL, loading-button animations, QR/barcode, redemption, transaction, login/session, theming and CI foundations.</p>
           </article>
           <article class="timeline-item reveal">
             <span>2020-2021</span>

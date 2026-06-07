@@ -1,19 +1,224 @@
+const root = document.documentElement;
+const siteHeader = document.querySelector(".site-header");
+const navToggle = document.querySelector(".nav-toggle");
+const themeSelect = document.querySelector("#theme-select");
+const fontButtons = document.querySelectorAll("[data-font-step], [data-font-reset]");
+const filterContainer = document.querySelector("#tech-filters");
+const filterStatus = document.querySelector("#filter-status");
+const filterReset = document.querySelector("[data-filter-reset]");
 const revealables = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
+const fontScales = {
+  "-1": 0.94,
+  "0": 1,
+  "1": 1.07,
+};
+
+const tagMap = {
+  "AxiomCore platform": ["Android", "Kotlin", "API", "Loyalty"],
+  AxiomCache: ["Android", "Kotlin", "Cache", "API"],
+  "PhotoCache and PhotoLoader": ["Android", "Kotlin", "Images", "Cache"],
+  "Login, sessions and auth": ["Android", "Kotlin", "Auth", "API"],
+  "LayoutDSL and screen state": ["Android", "Kotlin", "UI"],
+  "UI DSL and components": ["Android", "Kotlin", "UI"],
+  "Animations and motion": ["Android", "UI"],
+  "Themes and source-of-truth": ["Android", "UI"],
+  "Payments, QR and wallet flows": ["Android", "Payments", "Google Wallet"],
+  "LoyalKit / Viseca": ["Android", "Kotlin", "Loyalty"],
+  Alphamega: ["Android", "Kotlin", "Loyalty", "Google Wallet"],
+  Antamivi: ["Android", "Kotlin", "Maps", "Loyalty"],
+  Omonoia: ["Android", "Kotlin", "Loyalty"],
+  Cablenet: ["Android", "Kotlin", "Loyalty"],
+  FEBE: ["Android", "Kotlin", "Payments"],
+  "Bean Bar": ["Android", "Kotlin", "Payments", "Commerce"],
+  "Stick And Win": ["Android", "Kotlin", "Loyalty"],
+  "Legacy product lines": ["Android", "Kotlin", "Payments"],
+  AxiomPipe: ["CI/CD", "Azure", "DevOps"],
+  "AxiomPlugin / LibraryPlugin": ["Gradle", "Android", "CI/CD"],
+  CodexReview: ["AI", "Azure", "DevOps"],
+  AxiomAgency: ["Docker", "Azure", "DevOps"],
+  "Support libraries": ["Kotlin", "Security", "Cache"],
+  "MERIT / backend / web support": ["Backend", "Web", "CI/CD"],
+  SakuraStats: ["Android", "Kotlin", "Java", "SQLite"],
+  "SakuraStats CLI": ["Java", "SQLite", "Web"],
+  "Fake News Detection": ["Java", "SQLite", "NLP"],
+  "Database Translation": ["Java", "SQLite", "Automation"],
+  "IRC game-lobby client": ["Java", "JavaFX", "PHP", "SQLite"],
+  "Vacation-management system": ["Java", "JPA", "Swing"],
+  "Early websites": ["Web", "JavaScript", "PHP"],
+  HashPDF: ["C#", "Utility"],
+  Guit2Key: ["Python", "Utility"],
+  "Repository-Listing": ["Android", "Kotlin"],
+  JellyRecycler: ["Android", "Kotlin", "UI"],
+  ColorBetween: ["Android", "Kotlin", "UI"],
+  SpaceInvaders: ["Python", "Game"],
+  Semigods: ["Game", "HTML5"],
+  "Greeenhouse Dystopia": ["Game", "Godot"],
+  Castaways: ["Game"],
+  Raid51: ["Game"],
+  "Hang on, Bill!": ["Game", "HTML5"],
+  KTee: ["Kotlin", "Library"],
+  LoggingInterceptor: ["Kotlin", "OkHttp", "Library"],
+  "Bottom Sheet Image Picker fork": ["Android", "Kotlin", "Library"],
+  "CountryCodePicker fork": ["Android", "Java", "Library"],
+  "LoadingButtonAndroid fork": ["Android", "Kotlin", "Library"],
+  "Pdf-Viewer fork": ["Android", "Kotlin", "Library"],
+  "RoundableLayout fork": ["Android", "Kotlin", "Library"],
+  "Wikimedia Commons app fork": ["Android", "Java"],
+  "Flashbar fork": ["Android", "Kotlin", "Library"],
+  "BlurKit Android fork": ["Android", "Java", "Library"],
+  "ElevationImageView fork": ["Android", "Kotlin", "Library"],
+};
+
+function getStorage(key, fallback) {
+  try {
+    return localStorage.getItem(key) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function setStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Ignore storage failures in private browsing or locked-down browsers.
+  }
+}
+
+function applyTheme(theme) {
+  if (theme === "light" || theme === "dark") {
+    root.dataset.theme = theme;
+  } else {
+    root.removeAttribute("data-theme");
+  }
+
+  if (themeSelect) {
+    themeSelect.value = theme;
+  }
+}
+
+function applyFontStep(step) {
+  const normalized = String(Math.max(-1, Math.min(1, Number(step) || 0)));
+  root.style.setProperty("--font-scale", fontScales[normalized]);
+  fontButtons.forEach(button => {
+    const isReset = button.hasAttribute("data-font-reset") && normalized === "0";
+    const isStep = button.dataset.fontStep === normalized;
+    button.classList.toggle("is-active", isReset || isStep);
+  });
+  setStorage("portfolioFontStep", normalized);
+}
+
+function setupDisplayControls() {
+  applyTheme(getStorage("portfolioTheme", "system"));
+  applyFontStep(getStorage("portfolioFontStep", "0"));
+
+  themeSelect?.addEventListener("change", event => {
+    const theme = event.target.value;
+    setStorage("portfolioTheme", theme);
+    applyTheme(theme);
+  });
+
+  fontButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const nextStep = button.hasAttribute("data-font-reset") ? "0" : button.dataset.fontStep;
+      applyFontStep(nextStep);
     });
-  },
-  { threshold: 0.12 }
-);
+  });
+}
 
-revealables.forEach((element, index) => {
-  element.style.transitionDelay = `${Math.min(index * 45, 220)}ms`;
-  observer.observe(element);
-});
+function setupNavigation() {
+  navToggle?.addEventListener("click", () => {
+    const isOpen = siteHeader?.classList.toggle("is-nav-open") ?? false;
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
+  document.querySelectorAll(".site-nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      siteHeader?.classList.remove("is-nav-open");
+      navToggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+function setupTechFilter() {
+  if (!filterContainer) return;
+
+  const cards = [...document.querySelectorAll(".work-card, .system-card, .project-card")].map(card => {
+    const title = card.querySelector("h3")?.textContent?.trim() ?? "";
+    const tags = tagMap[title] ?? [];
+    card.dataset.tags = tags.join(",");
+    return { card, title, tags };
+  });
+
+  const counts = new Map();
+  cards.forEach(({ tags }) => {
+    tags.forEach(tag => counts.set(tag, (counts.get(tag) ?? 0) + 1));
+  });
+
+  const sortedTags = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+  sortedTags.forEach(([tag, count]) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.filterTag = tag;
+    button.setAttribute("aria-pressed", "false");
+    button.innerHTML = `${tag}<small>${count}</small>`;
+    filterContainer.append(button);
+  });
+
+  function applyFilter(activeTag) {
+    const isAll = !activeTag;
+    let shown = 0;
+
+    cards.forEach(({ card, tags }) => {
+      const matches = isAll || tags.includes(activeTag);
+      card.classList.toggle("is-filtered-out", !matches);
+      if (matches) shown += 1;
+    });
+
+    filterContainer.querySelectorAll("button").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.filterTag === activeTag));
+    });
+
+    if (filterStatus) {
+      filterStatus.textContent = isAll
+        ? `Showing all ${cards.length} cards.`
+        : `Showing ${shown} cards tagged ${activeTag}.`;
+    }
+  }
+
+  filterContainer.addEventListener("click", event => {
+    const button = event.target.closest("button[data-filter-tag]");
+    if (!button) return;
+    const selected = button.getAttribute("aria-pressed") === "true" ? "" : button.dataset.filterTag;
+    applyFilter(selected);
+  });
+
+  filterReset?.addEventListener("click", () => applyFilter(""));
+  applyFilter("");
+}
+
+function setupRevealAnimation() {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealables.forEach((element, index) => {
+    element.style.transitionDelay = `${Math.min(index * 45, 220)}ms`;
+    observer.observe(element);
+  });
+}
+
+setupDisplayControls();
+setupNavigation();
+setupTechFilter();
+setupRevealAnimation();
