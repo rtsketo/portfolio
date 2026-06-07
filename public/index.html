@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio for Aristos Pasalides, also known as rtsketo: Android-first mobile platform engineer focused on shared Android infrastructure, production app delivery, UI systems, caching, networking, release tooling, and evidence-backed engineering."
+    />
+    <title>Aristos Pasalides / rtsketo | Android Platform Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="rtsketo portfolio home">
+        <span class="brand-mark">r</span>
+        <span>Aristos Pasalides</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#platform">Platform</a>
+        <a href="#apps">Apps</a>
+        <a href="#tooling">Tooling</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-pad">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Aristos Pasalides · rtsketo</p>
+          <h1>Android platform work, not just Android screens.</h1>
+          <p class="hero-lede">
+            I build production Android apps and the reusable systems behind them:
+            shared platform code, API caching, image loading, networking/auth,
+            screen state, UI DSLs, release automation, and practical developer tooling.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#platform">View platform work</a>
+            <a class="button button-secondary" href="https://github.com/rtsketo" rel="noopener" target="_blank">
+              GitHub profile
+            </a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal" aria-label="Portfolio highlights">
+          <div class="portrait" aria-hidden="true">
+            <div class="portrait-ring"></div>
+            <div class="portrait-core">rt</div>
+          </div>
+          <dl class="metric-grid">
+            <div>
+              <dt>Professional arc</dt>
+              <dd>2019-2026</dd>
+            </div>
+            <div>
+              <dt>Core stack</dt>
+              <dd>Kotlin / Java</dd>
+            </div>
+            <div>
+              <dt>Audit scope</dt>
+              <dd>62 repos</dd>
+            </div>
+            <div>
+              <dt>Main lane</dt>
+              <dd>Android platform</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="strip reveal" aria-label="Professional summary">
+        <p>
+          Short version: shared Android platform engineering, production app delivery,
+          release automation, code-review tooling, and public personal projects,
+          with private internals intentionally left out.
+        </p>
+      </section>
+
+      <section id="platform" class="section-pad">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Shared Android platform</p>
+          <h2>The reusable systems I built and maintained.</h2>
+          <p>
+            Evidence comes from authored commit history, changed areas, and direct code
+            inspection where local source is available. Public wording stays at capability
+            level and avoids internal endpoints, tickets, branches, or source links.
+          </p>
+        </div>
+
+        <div class="work-grid dense-grid">
+          <article class="work-card reveal">
+            <span class="card-index">01</span>
+            <h3>AxiomCore platform</h3>
+            <p>
+              Designed and maintained a shared Android platform used by multiple production
+              loyalty apps, rather than rebuilding the same infrastructure per app.
+            </p>
+            <ul>
+              <li>20k+ authored-commit trail from 2020-2026.</li>
+              <li>Shared loyalty, campaign, voucher, transaction, payment and API models.</li>
+              <li>Reusable foundations for apps, SDK surfaces and demo/test launchers.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">02</span>
+            <h3>AxiomCache</h3>
+            <p>
+              Built smart request/cache infrastructure that can return fast cached data,
+              avoid duplicate calls, refresh when needed, and persist useful API responses.
+            </p>
+            <ul>
+              <li>Memory and persisted response caching.</li>
+              <li>Per-user/session scoped cache keys.</li>
+              <li>Forced refresh, no-refresh, invalidation and duplicate-call coalescing.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">03</span>
+            <h3>PhotoCache and PhotoLoader</h3>
+            <p>
+              Built custom image/photo loading infrastructure instead of just wiring a
+              ready-made image feature into screens.
+            </p>
+            <ul>
+              <li>Disk cache, max-age and max-size cleanup.</li>
+              <li>Sampled decode, WebP storage and GIF preservation.</li>
+              <li>Placeholder/error states and stale RecyclerView bind protection.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">04</span>
+            <h3>Login, sessions and auth</h3>
+            <p>
+              Built shared Retrofit-based networking behavior around login/session state,
+              diagnostics, auth refresh, headers, ETag reuse and normalized failures.
+            </p>
+            <ul>
+              <li>UserSession, auth token storage and customer/session cache scoping.</li>
+              <li>Token/session refresh, invalid-token and post-login handling.</li>
+              <li>ETag/304 reuse and response diagnostics.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">05</span>
+            <h3>LayoutDSL and screen state</h3>
+            <p>
+              Built a Kotlin layout DSL and reusable screen foundations for loading,
+              navigation, lifecycle behavior, overlays, sheets and state restoration.
+            </p>
+            <ul>
+              <li>Constraint helpers, params, chains, margins, centers and reusable view setup.</li>
+              <li>Serializable state save/restore.</li>
+              <li>Reusable loading, popup and flow patterns.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">06</span>
+            <h3>UI DSL and components</h3>
+            <p>
+              Built code-first Android UI helpers and reusable components for repeated
+              production surfaces.
+            </p>
+            <ul>
+              <li>Constraint/layout DSLs and Recycler/list composition.</li>
+              <li>Adapters, cards, inputs, buttons, dialogs, sheets and toasts.</li>
+              <li>Skeletons, loading states and brand-aware presentation helpers.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">07</span>
+            <h3>Animations and motion</h3>
+            <p>
+              Built and maintained repeated Android motion patterns across core components
+              and app flows, from loading buttons to spin/reward and payment interactions.
+            </p>
+            <ul>
+              <li>AxiomLoadingButton, Lottie, Recycler/list and sheet animations.</li>
+              <li>Spin wheel timing, prize-card transitions and error animations.</li>
+              <li>Payment-button, guide, scratch, profile and voucher motion fixes.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">08</span>
+            <h3>Theme, palettes and source of truth</h3>
+            <p>
+              Maintained multi-brand theme/palette foundations and treated Android behavior
+              as part of a larger backend/API system.
+            </p>
+            <ul>
+              <li>Brand color palettes, shape helpers and visual primitives.</li>
+              <li>API/model/config alignment before client-side behavior changes.</li>
+              <li>Product-dependent behavior called out explicitly.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">09</span>
+            <h3>Payments, cards and passes</h3>
+            <p>
+              Worked across payment-adjacent and card/pass flows where Android UI,
+              backend calls and external payment/pass providers had to line up correctly.
+            </p>
+            <ul>
+              <li>JCC and Google Pay checkout behavior, token handling and redirects.</li>
+              <li>Google Wallet/QR pass surfaces and payload diagnostics.</li>
+              <li>Payment-method persistence, card registration/conversion and pass/QR UI.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="apps" class="section-pad systems-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Production Android delivery</p>
+          <h2>Where the platform work showed up.</h2>
+          <p>
+            These are public-safe app-line summaries from the verified inventory.
+            No internal links, commit hashes, endpoints, branch names, screenshots,
+            tickets, credentials, or private mechanics are exposed.
+          </p>
+        </div>
+
+        <div class="systems-grid app-grid">
+          <article class="system-card reveal">
+            <span>LK</span>
+            <h3>LoyalKit / Viseca</h3>
+            <p>Full library-style loyalty app surface for Viseca's one/surprize ecosystem: embedded reward-shop style flows, rewards, campaigns, vouchers, terms, points/account screens, card selection, Viseca login scraping, demo launcher/server/theme persistence and spin/chance experiences.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>AM</span>
+            <h3>Alphamega</h3>
+            <p>Large Cyprus supermarket loyalty app work: rewards UI, gift cards, campaign/reward lists, QR and Google Wallet pass flow, Firebase analytics/events, consent/CMP, login/session fixes, environment switching and redesign/theme support.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>AT</span>
+            <h3>Antamivi</h3>
+            <p>Bank of Cyprus reward-scheme app work: Near Me map/list behavior, filters, search/focus, partner/location presentation, bottom-sheet state restoration, campaign links, vouchers, terms, login and account/session flows.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>OM</span>
+            <h3>Omonoia</h3>
+            <p>Cyprus football-club loyalty/privilege app work: account/card/service flows, service-to-card refactor, transfers, profile image fixes, card registration/conversion, widgets, registration UX and modernization.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>CB</span>
+            <h3>Cablenet</h3>
+            <p>Cyprus telecom rewards app work: voucher/redemption details, live refresh, spin/popup/voucher timing, profile/media/circle/community features, guide animations, media-store migration and security/build hardening.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>FB</span>
+            <h3>FEBE</h3>
+            <p>School/cafeteria and parent-payment style app work: team/praise and praise-points screens, partner/category/search/filter behavior, QR/code sheet, voucher public codes, HTML notifications, OTP/auth/session and build hardening.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>BB</span>
+            <h3>Bean Bar</h3>
+            <p>Cyprus coffee-chain commerce app work: basket, checkout, orders, addresses, JCC/Google Pay, payment method persistence, payment redirection, order-type switching, transaction details, animations and terms/component alignment.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>SW</span>
+            <h3>StickAndWin</h3>
+            <p>Campaign/reward mechanics across a long-running loyalty app: spin, scratch, voucher, stamp, QR, widgets, media transfer, notifications, cache refreshes, auth expiration and app deprecation/update behavior.</p>
+          </article>
+
+          <article class="system-card reveal">
+            <span>LG</span>
+            <h3>Legacy product lines</h3>
+            <p>Up Benefia, OnePOS, FEBE Portal, Elections and older products: Slovak-language benefit/voucher redemption, POS flows, QR/barcode, merchant/location, reset-password/OTP, transaction/date, theming and CI/pipeline fixes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="tooling" class="section-pad">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Tooling and automation</p>
+          <h2>The work that made shipping repeatable.</h2>
+          <p>
+            The portfolio is Android-first, but the evidence also shows build,
+            release, review, agent and support-library work around the mobile ecosystem.
+          </p>
+        </div>
+
+        <div class="work-grid tooling-grid">
+          <article class="work-card reveal">
+            <span class="card-index">A</span>
+            <h3>AxiomPipe</h3>
+            <p>Reusable Azure pipeline templates and mobile release automation.</p>
+            <ul>
+              <li>Android app/library release templates.</li>
+              <li>Firebase APK distribution and APK/AAB build flows.</li>
+              <li>Slack notifications, PR hooks, title generation, artifacts and cleanup.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">G</span>
+            <h3>AxiomPlugin / LibraryPlugin</h3>
+            <p>Internal Gradle tooling for Android repo setup and publication policy.</p>
+            <ul>
+              <li>AxiomCore resolution through project structure and core properties.</li>
+              <li>Version catalog, publication variants and toolchain policy.</li>
+              <li>Environment credentials, keystore paths and agent/Linux support.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">C</span>
+            <h3>CodexReview</h3>
+            <p>Internal AI-assisted Azure DevOps PR review automation.</p>
+            <ul>
+              <li>Merged-tree review when available.</li>
+              <li>Trigger/deploy service, logs and completion comments.</li>
+              <li>Secret redaction, guardrails, PR hooks and review skill packs.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">D</span>
+            <h3>AxiomAgency</h3>
+            <p>Agent infrastructure and pipeline support around the mobile workflow.</p>
+            <ul>
+              <li>Dockerized Azure DevOps agent setup and update scripts.</li>
+              <li>Agent capabilities such as Firebase CLI, Python and NVD cache.</li>
+              <li>PR hooks, Slack notifications and recurring Docker cleanup support.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">S</span>
+            <h3>Support libraries</h3>
+            <p>Internal encoding, endpoint/pinning and hash/cache support libraries.</p>
+            <ul>
+              <li>AxiomCovert endpoint constants, certificate pins and routing updates.</li>
+              <li>AxiomCodec Base64/codec dependency and publication maintenance.</li>
+              <li>AxiomEncoder and HashCache support-library upkeep.</li>
+            </ul>
+          </article>
+
+          <article class="work-card reveal">
+            <span class="card-index">M</span>
+            <h3>MERIT / backend / web support</h3>
+            <p>Support-scoped backend/API and web infrastructure work tied to mobile behavior.</p>
+            <ul>
+              <li>API/model/config alignment where Android depended on server rules.</li>
+              <li>Pipeline, release, Docker/service and review-hook support.</li>
+              <li>Explicitly support-scoped, not primary backend ownership.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section-pad projects-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Public personal projects</p>
+          <h2>Public work, thesis work, and library contributions.</h2>
+          <p>
+            Public GitHub projects are linked when safe. Private experiments and forks are
+            labelled accurately so they do not become inflated claims.
+          </p>
+        </div>
+
+        <div class="section-subheading reveal">
+          <h3>Original projects and thesis work</h3>
+          <p>Projects where the repository itself is the primary artifact.</p>
+        </div>
+
+        <div class="project-list">
+          <a class="project-card reveal" href="https://github.com/rtsketo/SakuraStats" rel="noopener" target="_blank">
+            <span>Kotlin / Android · 2019-2021</span>
+            <h3>SakuraStats</h3>
+            <p>Clash Royale clan analytics app: war prognostics, missed final battles, last battle activity, war win ratios, card-level scoring, Clan War chest tracking, local Room-style storage and a Kotlin migration from an earlier Java/PC version.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/SakuraStats-PC" rel="noopener" target="_blank">
+            <span>Java / SQLite / Site generator · 2018-2019</span>
+            <h3>SakuraStats PC</h3>
+            <p>Pre-Android precursor for clan statistics: CLI/JAR workflow over clan tags, SQLite-backed processing and an example generated site for monitoring multiple Clash Royale clans.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/FakeNewsDetection" rel="noopener" target="_blank">
+            <span>Java / NLP thesis · 2019</span>
+            <h3>Fake News Detection</h3>
+            <p>University thesis application for Greek fake-news detection: trainable Java desktop app, plain-text or web-page article input, Greek/English PoS tagging resources, article corpus, SQLite trained database and repeatable accuracy tester.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/dbTranslation" rel="noopener" target="_blank">
+            <span>Java / SQLite / Automation · 2017</span>
+            <h3>Database Translation</h3>
+            <p>Utility for translating an English database into Greek through automated Google Translate API calls, with multithreaded server communication and SQLite-backed processing.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/YOG-IRC-Client" rel="noopener" target="_blank">
+            <span>JavaFX / PHP / SQLite · 2017</span>
+            <h3>IRC game-lobby client</h3>
+            <p>Desktop IRC client used as a game lobby: chat commands, login/register flows and server-side database communication, built before the Android production years.</p>
+          </a>
+
+          <article class="project-card reveal">
+            <span>Java / JPA / Swing · 2016</span>
+            <h3>Vacation-management system</h3>
+            <p>University group project for a virtual company, covering vacation management with Java, JPA, Swing, Derby, UML/Scrum workflow and SVN-era collaboration.</p>
+          </article>
+
+          <article class="project-card reveal">
+            <span>JavaScript / Web · 2016-2017</span>
+            <h3>Early websites</h3>
+            <p>Early web work including a dynamic university-site assignment and a local cafeteria website, using JavaScript, Bootstrap, PHP-adjacent tooling, HTML and CSS.</p>
+          </article>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/HashPDF" rel="noopener" target="_blank">
+            <span>C# / Utility · 2026</span>
+            <h3>HashPDF</h3>
+            <p>Recent public Windows utility candidate around PDF hashing/checking, with release and installer structure. Kept separate from older pre-agent project evidence.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/Guit2Key" rel="noopener" target="_blank">
+            <span>Python / Utility · 2025</span>
+            <h3>Guit2Key</h3>
+            <p>Small personal utility project connecting technical curiosity with current music practice.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/Repository-Listing" rel="noopener" target="_blank">
+            <span>Kotlin / Android · 2019</span>
+            <h3>Repository-Listing</h3>
+            <p>Early Android sample that supports Kotlin/Android breadth and has compatible legacy-toolchain build validation.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/JellyRecycler" rel="noopener" target="_blank">
+            <span>Kotlin / Android · 2021</span>
+            <h3>JellyRecycler</h3>
+            <p>Public Android/Kotlin component evidence. Useful as library/component breadth, with documentation and build polish treated separately from professional claims.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/ColorBetween" rel="noopener" target="_blank">
+            <span>Kotlin / Android · 2021</span>
+            <h3>ColorBetween</h3>
+            <p>Public Kotlin/Android component experiment supporting older Android breadth, intentionally not presented as current production-ready work.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/SpaceInvaders" rel="noopener" target="_blank">
+            <span>Python / Game · 2020-2021</span>
+            <h3>SpaceInvaders</h3>
+            <p>Creative/public programming breadth outside mobile platform work.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://rtsketo.itch.io/semigods" rel="noopener" target="_blank">
+            <span>HTML5 / Prototype · itch.io</span>
+            <h3>Semigods</h3>
+            <p>Browser-playable prototype published on the rtsketo itch.io profile, useful as public evidence of lightweight game prototyping and release packaging.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://rtsketo.itch.io/greeendys" rel="noopener" target="_blank">
+            <span>Godot / Platformer · Ludum Dare 39</span>
+            <h3>Greeenhouse Dystopia</h3>
+            <p>72-hour Ludum Dare Jam platformer made with Godot, released with HTML5, Windows, macOS and Linux builds.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://rtsketo.itch.io/castaways" rel="noopener" target="_blank">
+            <span>Survival game · Ludum Dare 43</span>
+            <h3>Castaways</h3>
+            <p>72-hour Ludum Dare survival game with Windows, macOS and Linux builds, plus source-code download evidence on itch.io.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/Raid51" rel="noopener" target="_blank">
+            <span>2D game · Ludum Dare 45</span>
+            <h3>Raid51</h3>
+            <p>Ludum Dare 45 release with HTML5, Windows, macOS and Linux builds, useful as early creative development evidence: fast scope decisions, strict deadlines and platform packaging.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://zanzavar.itch.io/hang-on-bill" rel="noopener" target="_blank">
+            <span>Co-authored adventure · Ludum Dare 47</span>
+            <h3>Hang on, Bill!</h3>
+            <p>Co-authored point-and-click adventure by Zanzavar, rtsketo and eretzoum, made in 72 hours and released for browser plus Windows, macOS and Linux.</p>
+          </a>
+
+        </div>
+
+        <div class="section-subheading reveal">
+          <h3>GitHub library and app contributions</h3>
+          <p>
+            These are forks or contribution branches with authored changes. They are
+            described by the actual commits found, not by repository ownership.
+          </p>
+        </div>
+
+        <div class="project-list">
+          <a class="project-card reveal" href="https://github.com/rtsketo/ktee" rel="noopener" target="_blank">
+            <span>Kotlin / Library fork · 2020-2024</span>
+            <h3>ktee</h3>
+            <p>Kotlin Tee logging/utility fork with real code changes: implemented `debug { }` and `release { }` functions, added a No-Op artifact, updated KDoc, fixed tests, removed old JUnit4 test wiring, renamed/published artifacts and upgraded Kotlin.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/LoggingInterceptor" rel="noopener" target="_blank">
+            <span>Kotlin / OkHttp fork · 2025-2026</span>
+            <h3>LoggingInterceptor</h3>
+            <p>OkHttp logging interceptor fork with API and behavior work: response header logging, `logHeaders` toggle cleanup, isolated sink buffers, public `LogSink`, Kotlin compatibility fixes, API/Rx adapter updates, sample app flows and Gradle/plugin modernization.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/bottomsheet-imagepicker" rel="noopener" target="_blank">
+            <span>Kotlin / Android fork · 2020</span>
+            <h3>Bottom Sheet Image Picker fork</h3>
+            <p>Android image-picker library fork with builder-level color options, restored ability to enable or disable camera/gallery buttons in multi-select mode, Kotlin/Gradle updates and Slovak translations.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/CountryCodePicker" rel="noopener" target="_blank">
+            <span>Java / Android fork · 2023</span>
+            <h3>CountryCodePicker fork</h3>
+            <p>Phone country-code picker fork with separate background customization for dialog/button, API 33 and AndroidX annotation updates, libphonenumber update, Maven publication cleanup and exported-activity compatibility work.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/LoadingButtonAndroid" rel="noopener" target="_blank">
+            <span>Kotlin / Android fork · 2024</span>
+            <h3>LoadingButtonAndroid fork</h3>
+            <p>Android loading-button fork with AGP 8.5.2 modernization, Java 17 enforcement for JitPack publications, Gradle source-collection cleanup and redundant Gradle-script removal.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/Pdf-Viewer" rel="noopener" target="_blank">
+            <span>Kotlin / Android fork · 2023-2024</span>
+            <h3>Pdf-Viewer fork</h3>
+            <p>Lightweight Android PDF viewer fork with file-copy behavior for path/asset modes, temporary storage-permission relaxation, multidex removal and fork maintenance/merge work.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/RoundableLayout" rel="noopener" target="_blank">
+            <span>Kotlin / Android fork · 2021-2025</span>
+            <h3>RoundableLayout fork</h3>
+            <p>Android layout-library fork with an API openness change, Gradle 7 migration, Kotlin update, target SDK update, project-specific gitignore and later Gradle/Kotlin/Android SDK modernization.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/apps-android-commons" rel="noopener" target="_blank">
+            <span>Java / Android fork · 2019-2021</span>
+            <h3>Wikimedia Commons app fork</h3>
+            <p>Public fork contribution trail around the Android Wikimedia Commons app, including issue-linked changes and upstream-sync work. Presented as contribution/fork evidence, not product ownership.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/Flashbar" rel="noopener" target="_blank">
+            <span>Kotlin / Android fork · 2024-2025</span>
+            <h3>Flashbar fork</h3>
+            <p>Alerting-library fork with build-configuration modernization, minimum SDK update, synthetics removal and JitPack/JDK setup. Presented as maintenance/customization evidence.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/blurkit-android" rel="noopener" target="_blank">
+            <span>Java / Android fork · 2025</span>
+            <h3>BlurKit Android fork</h3>
+            <p>Android blur-library fork with Gradle/target SDK updates, publishing setup, test-dependency updates and README dependency declaration cleanup.</p>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/rtsketo/ElevationImageView" rel="noopener" target="_blank">
+            <span>Kotlin / Android fork · 2025</span>
+            <h3>ElevationImageView fork</h3>
+            <p>ImageView shadow-library fork with Gradle/AndroidX updates, Maven/JitPack publishing support and library-version README cleanup.</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="foundation" class="section-pad evidence-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Foundation</p>
+          <h2>Older CV context, kept public-safe.</h2>
+          <p>
+            These points come from older CVs and public project history. Addresses,
+            phone numbers and old private contact details are intentionally omitted.
+          </p>
+        </div>
+
+        <div class="evidence-grid">
+          <article class="evidence-card reveal">
+            <h3>Computer Science degree</h3>
+            <p>BSc in Computer Science from the Hellenic Open University, Science and Technology Department, completed in 2018.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Languages</h3>
+            <p>Greek native speaker with English C1 / TOEIC evidence in older CV material. Professional work is mostly Greek/English technical communication.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Early technical base</h3>
+            <p>Java, Android Studio, JavaFX, Swing, SQLite, MySQL, Room, Gradle, Maven, REST, PHP, JavaScript, HTML, CSS, jQuery, Bootstrap, UML and GitHub.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Pre-AI delivery habits</h3>
+            <p>Released side projects, thesis tooling, GitHub fork/contribution work, itch.io game-jam builds and university systems before modern AI coding agents existed.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="timeline" class="section-pad timeline-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Timeline</p>
+          <h2>Year-level evidence, without leaking internals.</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <span>2018-2019</span>
+            <h3>Public roots</h3>
+            <p>SakuraStats PC/Android, Greek fake-news detection thesis, Android samples, Java text-processing, game experiments and public GitHub work before modern AI coding agents.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>2019-2020</span>
+            <h3>Early production work</h3>
+            <p>StickAndWin, Benefia, OnePOS and legacy product lines: LayoutDSL, loading-button animations, QR/barcode, redemption, transaction, login/session, theming and CI foundations.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>2020-2021</span>
+            <h3>Shared platform foundations</h3>
+            <p>AxiomCore trail deepens: AxiomCache, PhotoCache, API mediation/cache, layout DSLs, UI/design foundations, networking/auth and reusable screen behavior.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>2021-2022</span>
+            <h3>Image and list infrastructure</h3>
+            <p>From-scratch image cache/loading, safer Recycler/list composition, animations, app modernization and repeated production UI surfaces.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>2022-2024</span>
+            <h3>Release tooling and app breadth</h3>
+            <p>Reusable Azure pipelines, Gradle tooling, SDK/app delivery, campaigns, rewards, account/session, payments, notifications and commerce flows.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>2024-2026</span>
+            <h3>Platform evolution and review automation</h3>
+            <p>Alphamega, Google Wallet/QR pass work, consent/analytics, CodexReview, agent infrastructure, improved PhotoLoader/AxiomCache behavior and source-of-truth verification.</p>
+          </article>
+          <article class="timeline-item reveal">
+            <span>Current</span>
+            <h3>Verification-first engineering</h3>
+            <p>Commit-backed claims, code inspection, careful disclosure boundaries, and practical AI-assisted workflows without overclaiming generated work.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-pad evidence-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Evidence boundaries</p>
+          <h2>What this page deliberately does not claim.</h2>
+          <p>
+            The goal is to be useful and accurate, not inflated. Some evidence exists
+            but is intentionally excluded or narrowed.
+          </p>
+        </div>
+
+        <div class="evidence-grid">
+          <article class="evidence-card reveal">
+            <h3>No iOS feature ownership</h3>
+            <p>Small iOS/AMA histories are treated only as CI/review-hook/pipeline support. This site does not claim native iOS, Swift, or iOS feature development.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Foodhaus cross-platform excluded</h3>
+            <p>The recent Foodhaus Flutter/KMM/shared-code stream is excluded as AI-generated false-positive evidence and is not used for CV or portfolio claims.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Private details omitted</h3>
+            <p>No internal repository links, branch names, source paths, commit hashes, endpoints, tickets, credentials or private screenshots are published here.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Backend support scoped</h3>
+            <p>MERIT/backend/web work is described as mobile-facing support and automation unless a separately verified backend feature is selected later.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section-pad contact-section">
+        <div class="contact-card reveal">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2>Want the short version?</h2>
+            <p>
+              Aristos Pasalides, Android-first engineer with strong reusable-platform
+              instincts, a long production mobile trail, and a preference for
+              evidence-backed accuracy over vague portfolio polish.
+            </p>
+          </div>
+          <div class="contact-actions">
+            <a class="button button-primary" href="https://github.com/rtsketo" rel="noopener" target="_blank">
+              GitHub @rtsketo
+            </a>
+            <a class="button button-secondary" href="#platform">Read platform summary</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Aristos Pasalides · rtsketo</span>
+      <span>Public-safe portfolio draft for rtsketo.eu.</span>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
