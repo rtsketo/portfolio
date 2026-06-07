@@ -1,6 +1,6 @@
 :root {
   color-scheme: light;
-  --font-scale: 1;
+  --font-scale: 0.94;
   --font-body: "Noto Sans", "Trebuchet MS", sans-serif;
   --font-display: "Newsreader", Georgia, serif;
   --ink: #17201d;
@@ -188,7 +188,6 @@ a {
 }
 
 .theme-toggle,
-.font-control button,
 .nav-toggle {
   min-height: 34px;
   border: 1px solid var(--line);
@@ -212,25 +211,6 @@ a {
 
 .theme-toggle:hover,
 .theme-toggle[aria-pressed="true"] {
-  background: var(--accent-soft);
-}
-
-.font-control {
-  display: inline-flex;
-  padding: 2px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--paper) 62%, transparent);
-}
-
-.font-control button {
-  min-width: 34px;
-  border: 0;
-  background: transparent;
-}
-
-.font-control button:hover,
-.font-control button.is-active {
   background: var(--accent-soft);
 }
 
@@ -963,16 +943,6 @@ h2 em {
   .site-nav a {
     padding: 9px 10px;
     font-size: 0.86rem;
-  }
-
-  .site-controls {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .font-control {
-    justify-content: space-between;
   }
 
   .section-pad {

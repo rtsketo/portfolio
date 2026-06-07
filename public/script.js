@@ -2,18 +2,11 @@ const root = document.documentElement;
 const siteHeader = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
 const themeToggle = document.querySelector("[data-theme-toggle]");
-const fontButtons = document.querySelectorAll("[data-font-step], [data-font-reset]");
 const filterContainer = document.querySelector("#tech-filters");
 const filterStatus = document.querySelector("#filter-status");
 const filterReset = document.querySelector("[data-filter-reset]");
 const revealables = document.querySelectorAll(".reveal");
 const darkPreference = window.matchMedia?.("(prefers-color-scheme: dark)");
-
-const fontScales = {
-  "-1": 0.94,
-  "0": 1,
-  "1": 1.07,
-};
 
 const tagMap = {
   "AxiomCore platform": ["Android", "Kotlin", "API", "Loyalty"],
@@ -113,20 +106,8 @@ function getEffectiveTheme(theme) {
   return darkPreference?.matches ? "dark" : "light";
 }
 
-function applyFontStep(step) {
-  const normalized = String(Math.max(-1, Math.min(1, Number(step) || 0)));
-  root.style.setProperty("--font-scale", fontScales[normalized]);
-  fontButtons.forEach(button => {
-    const isReset = button.hasAttribute("data-font-reset") && normalized === "0";
-    const isStep = button.dataset.fontStep === normalized;
-    button.classList.toggle("is-active", isReset || isStep);
-  });
-  setStorage("portfolioFontStep", normalized);
-}
-
 function setupDisplayControls() {
   applyTheme(getStorage("portfolioTheme", "system"));
-  applyFontStep(getStorage("portfolioFontStep", "0"));
 
   themeToggle?.addEventListener("click", () => {
     const currentTheme = getStorage("portfolioTheme", "system");
@@ -142,12 +123,6 @@ function setupDisplayControls() {
     requestAnimationFrame(checkPrimaryButtonContrast);
   });
 
-  fontButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      const nextStep = button.hasAttribute("data-font-reset") ? "0" : button.dataset.fontStep;
-      applyFontStep(nextStep);
-    });
-  });
 }
 
 function parseColor(value) {
