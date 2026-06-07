@@ -14,6 +14,8 @@
   --line: rgba(23, 32, 29, 0.14);
   --glass: rgba(255, 252, 246, 0.72);
   --glass-strong: rgba(255, 252, 246, 0.9);
+  --solid-bg: #17201d;
+  --solid-fg: #fff9ef;
   --shadow: 0 22px 70px rgba(35, 50, 46, 0.13);
   --radius-xl: 34px;
   --radius-lg: 24px;
@@ -34,6 +36,8 @@
   --line: rgba(237, 244, 237, 0.16);
   --glass: rgba(24, 36, 32, 0.72);
   --glass-strong: rgba(26, 39, 35, 0.92);
+  --solid-bg: #edf4ed;
+  --solid-fg: #111917;
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
 }
 
@@ -51,6 +55,8 @@
     --line: rgba(237, 244, 237, 0.16);
     --glass: rgba(24, 36, 32, 0.72);
     --glass-strong: rgba(26, 39, 35, 0.92);
+    --solid-bg: #edf4ed;
+    --solid-fg: #111917;
     --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
   }
 }
@@ -147,9 +153,9 @@ a {
   height: 36px;
   place-items: center;
   border-radius: 50%;
-  color: #fff9ef;
+  color: var(--solid-fg);
   font-size: 0.82rem;
-  background: var(--ink);
+  background: var(--solid-bg);
 }
 
 .site-nav {
@@ -181,16 +187,7 @@ a {
   gap: 8px;
 }
 
-.theme-control {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--ink-soft);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.theme-control select,
+.theme-toggle,
 .font-control button,
 .nav-toggle {
   min-height: 34px;
@@ -203,8 +200,19 @@ a {
   background: var(--glass-strong);
 }
 
-.theme-control select {
-  padding: 0 28px 0 10px;
+.theme-toggle {
+  display: inline-grid;
+  width: 36px;
+  padding: 0;
+  place-items: center;
+  cursor: pointer;
+  font-size: 1.08rem;
+  line-height: 1;
+}
+
+.theme-toggle:hover,
+.theme-toggle[aria-pressed="true"] {
+  background: var(--accent-soft);
 }
 
 .font-control {
@@ -308,13 +316,28 @@ h2 em {
 }
 
 .button-primary {
-  border-color: var(--ink);
-  color: #fff9ef;
-  background: var(--ink);
+  border-color: var(--solid-bg);
+  color: var(--solid-fg);
+  background: var(--solid-bg);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
 }
 
 .button-secondary {
-  background: rgba(255, 252, 246, 0.56);
+  background: var(--glass-strong);
+}
+
+:root[data-contrast-guard="true"] .button-primary {
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  background: #111917 !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.86),
+    0 14px 38px rgba(0, 0, 0, 0.22) !important;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 
 .hero-card,
@@ -946,10 +969,6 @@ h2 em {
     align-items: stretch;
     flex-direction: column;
     gap: 10px;
-  }
-
-  .theme-control {
-    justify-content: space-between;
   }
 
   .font-control {

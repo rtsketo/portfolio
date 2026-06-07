@@ -1,12 +1,13 @@
 const root = document.documentElement;
 const siteHeader = document.querySelector(".site-header");
 const navToggle = document.querySelector(".nav-toggle");
-const themeSelect = document.querySelector("#theme-select");
+const themeToggle = document.querySelector("[data-theme-toggle]");
 const fontButtons = document.querySelectorAll("[data-font-step], [data-font-reset]");
 const filterContainer = document.querySelector("#tech-filters");
 const filterStatus = document.querySelector("#filter-status");
 const filterReset = document.querySelector("[data-filter-reset]");
 const revealables = document.querySelectorAll(".reveal");
+const darkPreference = window.matchMedia?.("(prefers-color-scheme: dark)");
 
 const fontScales = {
   "-1": 0.94,
@@ -95,9 +96,21 @@ function applyTheme(theme) {
     root.removeAttribute("data-theme");
   }
 
-  if (themeSelect) {
-    themeSelect.value = theme;
+  const effectiveTheme = getEffectiveTheme(theme);
+  if (themeToggle) {
+    themeToggle.setAttribute("aria-pressed", String(effectiveTheme === "dark"));
+    themeToggle.setAttribute(
+      "aria-label",
+      effectiveTheme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+    );
   }
+
+  requestAnimationFrame(checkPrimaryButtonContrast);
+}
+
+function getEffectiveTheme(theme) {
+  if (theme === "dark" || theme === "light") return theme;
+  return darkPreference?.matches ? "dark" : "light";
 }
 
 function applyFontStep(step) {
@@ -115,10 +128,18 @@ function setupDisplayControls() {
   applyTheme(getStorage("portfolioTheme", "system"));
   applyFontStep(getStorage("portfolioFontStep", "0"));
 
-  themeSelect?.addEventListener("change", event => {
-    const theme = event.target.value;
-    setStorage("portfolioTheme", theme);
-    applyTheme(theme);
+  themeToggle?.addEventListener("click", () => {
+    const currentTheme = getStorage("portfolioTheme", "system");
+    const nextTheme = getEffectiveTheme(currentTheme) === "dark" ? "light" : "dark";
+    setStorage("portfolioTheme", nextTheme);
+    applyTheme(nextTheme);
+  });
+
+  darkPreference?.addEventListener?.("change", () => {
+    if (getStorage("portfolioTheme", "system") === "system") {
+      applyTheme("system");
+    }
+    requestAnimationFrame(checkPrimaryButtonContrast);
   });
 
   fontButtons.forEach(button => {
@@ -127,6 +148,58 @@ function setupDisplayControls() {
       applyFontStep(nextStep);
     });
   });
+}
+
+function parseColor(value) {
+  const match = value.match(/rgba?\(([^)]+)\)/);
+  if (!match) return null;
+
+  const [r, g, b, a = "1"] = match[1]
+    .split(",")
+    .map(part => Number.parseFloat(part.trim()));
+
+  if ([r, g, b, a].some(component => Number.isNaN(component))) return null;
+  return { r, g, b, a };
+}
+
+function relativeLuminance({ r, g, b }) {
+  const normalize = value => {
+    const channel = value / 255;
+    return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+  };
+
+  return 0.2126 * normalize(r) + 0.7152 * normalize(g) + 0.0722 * normalize(b);
+}
+
+function contrastRatio(foreground, background) {
+  const light = Math.max(relativeLuminance(foreground), relativeLuminance(background));
+  const dark = Math.min(relativeLuminance(foreground), relativeLuminance(background));
+  return (light + 0.05) / (dark + 0.05);
+}
+
+function checkPrimaryButtonContrast() {
+  const button = document.querySelector(".button-primary");
+  if (!button) return;
+
+  const style = getComputedStyle(button);
+  const foreground = parseColor(style.color);
+  const background = parseColor(style.backgroundColor);
+
+  if (!foreground || !background || background.a === 0) {
+    root.dataset.contrastGuard = "true";
+    return;
+  }
+
+  if (contrastRatio(foreground, background) < 4.5) {
+    root.dataset.contrastGuard = "true";
+  }
+}
+
+function setupContrastGuard() {
+  checkPrimaryButtonContrast();
+  window.setTimeout(checkPrimaryButtonContrast, 250);
+  window.setTimeout(checkPrimaryButtonContrast, 1200);
+  window.setTimeout(checkPrimaryButtonContrast, 3000);
 }
 
 function setupNavigation() {
@@ -224,3 +297,4 @@ setupDisplayControls();
 setupNavigation();
 setupTechFilter();
 setupRevealAnimation();
+setupContrastGuard();

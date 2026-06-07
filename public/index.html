@@ -39,14 +39,9 @@
       </nav>
 
       <div class="site-controls" aria-label="Display controls">
-        <label class="theme-control" for="theme-select">
-          <span>Theme</span>
-          <select id="theme-select" name="theme">
-            <option value="system">System</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </label>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+          <span aria-hidden="true">☾</span>
+        </button>
         <div class="font-control" aria-label="Font size controls">
           <button type="button" data-font-step="-1" aria-label="Decrease font size">A-</button>
           <button type="button" data-font-reset aria-label="Reset font size">A</button>
@@ -66,7 +61,7 @@
             screen state, UI DSLs, release automation, and practical developer tooling.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#platform">View platform work</a>
+            <a class="button button-primary" href="#platform" data-darkreader-ignore>View platform work</a>
             <a class="button button-secondary" href="https://github.com/rtsketo" rel="noopener" target="_blank">
               GitHub profile
             </a>
@@ -750,7 +745,7 @@
             </p>
           </div>
           <div class="contact-actions">
-            <a class="button button-primary" href="https://github.com/rtsketo" rel="noopener" target="_blank">
+            <a class="button button-primary" href="https://github.com/rtsketo" rel="noopener" target="_blank" data-darkreader-ignore>
               GitHub @rtsketo
             </a>
             <a class="button button-secondary" href="#platform">Read platform summary</a>
