@@ -48,7 +48,6 @@ const tagMap = {
   JellyRecycler: ["Android", "Kotlin", "UI"],
   ColorBetween: ["Android", "Kotlin", "UI"],
   SpaceInvaders: ["Python", "Game"],
-  Semigods: ["Game", "HTML5"],
   "Greeenhouse Dystopia": ["Game", "Godot"],
   Castaways: ["Game"],
   Raid51: ["Game"],
