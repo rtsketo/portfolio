@@ -32,7 +32,7 @@ const tagMap = {
   CodexReview: ["AI", "Azure", "DevOps"],
   AxiomAgency: ["Docker", "Azure", "DevOps"],
   "Support libraries": ["Kotlin", "Security", "Cache"],
-  "MERIT / backend / web support": ["Backend", "Web", "CI/CD"],
+  ".NET API/library pipeline support": [".NET", "API", "CI/CD"],
   SakuraStats: ["Android", "Kotlin", "Java", "SQLite"],
   "SakuraStats CLI": ["Java", "SQLite", "Web"],
   "LGS-2013": ["Android", "Java", "Media"],
