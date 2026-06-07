@@ -107,6 +107,7 @@ a {
   place-items: center;
   border-radius: 50%;
   color: #fff9ef;
+  font-size: 0.82rem;
   background: var(--ink);
 }
 
