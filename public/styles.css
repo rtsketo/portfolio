@@ -567,7 +567,6 @@ h2 em {
   min-height: 275px;
 }
 
-.public-links,
 .filter-panel {
   display: grid;
   gap: 14px;
@@ -580,16 +579,6 @@ h2 em {
   backdrop-filter: blur(14px);
 }
 
-.public-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: fit-content;
-  max-width: 100%;
-}
-
-.public-links span,
-.public-links a,
 .tag-cloud button,
 .filter-reset {
   display: inline-flex;
@@ -600,11 +589,6 @@ h2 em {
   font-weight: 800;
 }
 
-.public-links span {
-  color: var(--ink-soft);
-}
-
-.public-links a,
 .tag-cloud button,
 .filter-reset {
   border: 1px solid var(--line);
@@ -612,11 +596,17 @@ h2 em {
   background: var(--glass-strong);
 }
 
-.public-links a {
-  padding: 0 12px;
+a.system-card {
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
-.public-links a:hover,
+a.system-card:hover,
+a.system-card:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow: 0 20px 58px rgba(35, 50, 46, 0.14);
+  transform: translateY(-2px);
+}
+
 .tag-cloud button:hover,
 .tag-cloud button[aria-pressed="true"],
 .filter-reset:hover {
@@ -973,7 +963,6 @@ h2 em {
     min-height: auto;
   }
 
-  .public-links,
   .filter-panel {
     padding: 14px;
   }
