@@ -22,7 +22,7 @@ const tagMap = {
   Alphamega: ["Android", "Kotlin", "Loyalty", "Google Wallet"],
   Antamivi: ["Android", "Kotlin", "Maps", "Loyalty"],
   Omonoia: ["Android", "Kotlin", "Loyalty"],
-  Cablenet: ["Android", "Kotlin", "Loyalty"],
+  MAXify: ["Android", "Kotlin", "Loyalty"],
   FEBE: ["Android", "Kotlin", "Payments"],
   "Bean Bar": ["Android", "Kotlin", "Payments", "Commerce"],
   "Stick And Win": ["Android", "Kotlin", "Loyalty"],
