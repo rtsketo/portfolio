@@ -37,7 +37,7 @@ const tagMap = {
   Kodmux: ["Android", "Kotlin", "SSH", "AI"],
   SakuraStats: ["Android", "Kotlin", "Java", "SQLite"],
   "SakuraStats CLI": ["Java", "SQLite", "Web"],
-  "LGS-2013": ["Android", "Java", "Media"],
+  LGS: ["Android", "Java", "Media"],
   LittleBox: ["Android", "Kotlin", "Game"],
   "Fake News Detection": ["Java", "SQLite", "NLP"],
   "Database Translation": ["Java", "SQLite", "Automation"],
