@@ -21,6 +21,7 @@
   --radius-lg: 24px;
   --radius-md: 16px;
   --max: 1180px;
+  --header-max: 1320px;
 }
 
 :root[data-theme="dark"] {
@@ -125,7 +126,7 @@ a {
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
-  width: min(calc(100% - 32px), var(--max));
+  width: min(calc(100% - 32px), var(--header-max));
   margin: 16px auto 0;
   padding: 12px 14px;
   border: 1px solid rgba(22, 33, 31, 0.12);

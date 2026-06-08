@@ -2,3 +2,4 @@ private/
 .DS_Store
 *.log
 *.tmp
+Caddyfile.pre-insecure-http-*.bak
