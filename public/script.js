@@ -18,7 +18,7 @@ const tagMap = {
   "Animations and motion": ["Android", "UI"],
   "Theme, palettes and source of truth": ["Android", "UI"],
   "Payments, cards and passes": ["Android", "Payments", "Google Wallet"],
-  "One and Surprize": ["Android", "Kotlin", "Loyalty"],
+  Surprize: ["Android", "Kotlin", "Loyalty"],
   Alphamega: ["Android", "Kotlin", "Loyalty", "Google Wallet"],
   Antamivi: ["Android", "Kotlin", "Maps", "Loyalty"],
   Omonoia: ["Android", "Kotlin", "Loyalty"],
