@@ -253,8 +253,8 @@ h2 {
 h1 {
   max-width: 860px;
   margin-bottom: 24px;
-  font-size: clamp(2.1rem, 5.5vw, 4.4rem);
-  line-height: 0.96;
+  font-size: clamp(2.35rem, 6.2vw, 4.85rem);
+  line-height: 0.94;
 }
 
 h1::first-line,
@@ -435,8 +435,8 @@ h2 em {
 
 .section-heading h2 {
   margin-bottom: 18px;
-  font-size: clamp(2.6rem, 6vw, 5.6rem);
-  line-height: 0.94;
+  font-size: clamp(2.1rem, 5.5vw, 4.4rem);
+  line-height: 0.96;
 }
 
 .section-heading p:not(.eyebrow) {
@@ -762,8 +762,8 @@ h2 em {
 
 .contact-card h2 {
   margin-bottom: 16px;
-  font-size: clamp(2.4rem, 6vw, 5rem);
-  line-height: 0.94;
+  font-size: clamp(2.1rem, 5.5vw, 4.4rem);
+  line-height: 0.96;
 }
 
 .contact-actions {
@@ -957,7 +957,7 @@ h2 em {
   }
 
   h1 {
-    font-size: clamp(2rem, 9vw, 3.2rem);
+    font-size: clamp(2.15rem, 9.5vw, 3.55rem);
   }
 
   .work-grid,
