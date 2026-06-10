@@ -8,4 +8,22 @@ rtsketo.eu {
 		X-Content-Type-Options "nosniff"
 		Referrer-Policy "strict-origin-when-cross-origin"
 	}
+
+	# Long-lived cache for fingerprint-stable static assets
+	@static {
+		path *.css *.js *.webp *.png *.jpg *.jpeg *.gif *.svg *.ico *.woff *.woff2
+	}
+	header @static Cache-Control "public, max-age=2592000, immutable"
+
+	# Manifest and robots/sitemap: cache briefly
+	@meta {
+		path /site.webmanifest /robots.txt /sitemap.xml
+	}
+	header @meta Cache-Control "public, max-age=86400"
+
+	# HTML: always revalidate
+	@html {
+		path / *.html
+	}
+	header @html Cache-Control "public, max-age=0, must-revalidate"
 }
